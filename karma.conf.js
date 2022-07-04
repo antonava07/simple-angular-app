@@ -36,10 +36,10 @@ module.exports = function (config) {
       //If the coverage drops below the number, the test execution fails even if all specs succeeded.
       check: {
         global: {
-          statements: 70,
+          statements: 80,
           branches: 80,
-          functions: 60,
-          lines: 60,
+          functions: 80,
+          lines: 80,
         }
       }
     },
