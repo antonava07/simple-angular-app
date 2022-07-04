@@ -32,7 +32,16 @@ module.exports = function (config) {
       reporters: [
         { type: 'html' },
         { type: 'text-summary' }
-      ]
+      ],
+      //If the coverage drops below the number, the test execution fails even if all specs succeeded.
+      check: {
+        global: {
+          statements: 70,
+          branches: 80,
+          functions: 60,
+          lines: 60,
+        }
+      }
     },
     reporters: ['progress', 'kjhtml', 'html'],
     htmlReporter: {
