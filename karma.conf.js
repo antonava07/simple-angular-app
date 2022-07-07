@@ -27,7 +27,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/angular-app'),
+      dir: require('path').join(__dirname, './test-output/coverage'),
       subdir: '.',
       reporters: [
         { type: 'html' },
@@ -45,7 +45,7 @@ module.exports = function (config) {
     },
     reporters: ['progress', 'kjhtml', 'html'],
     htmlReporter: {
-      outputFile: 'tests/units.html',
+      outputFile: './test-output/unit-test/units.html',
             
       // Optional
       pageTitle: 'Unit Tests',
