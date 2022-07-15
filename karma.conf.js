@@ -11,7 +11,8 @@ module.exports = function (config) {
       require('karma-jasmine-html-reporter'),
       require('karma-coverage'),
       require('@angular-devkit/build-angular/plugins/karma'),
-      require("karma-htmlfile-reporter")
+      require("karma-htmlfile-reporter"),
+      require("karma-docker-launcher")
     ],
     client: {
       jasmine: {
@@ -58,8 +59,23 @@ module.exports = function (config) {
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
-    autoWatch: true,
-    browsers: ['Chrome'],
+    autoWatch: false,
+    browsers: ['ChromeHeadlessDocker', 'Chrome'],
+    customLaunchers: {
+      ChromeHeadlessDocker: {
+        base: 'Docker',   
+        modemOptions: {
+          socketPath: '/var/run/docker.sock'
+        },
+        createOptions: {
+          Image: 'alpeware/chrome-headless-trunk',
+          Env: ['CHROME_OPTS=$KARMA_URL'],
+          HostConfig: {
+            NetworkMode: 'host'
+          }
+        }
+      }
+    },
     singleRun: false,
     restartOnFileChange: true
   });
